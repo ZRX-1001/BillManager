@@ -1,0 +1,273 @@
+.container {
+  padding: 12px 16px 80px;
+}
+
+/* ===== Filter Bar ===== */
+.filterBar {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+}
+
+.monthRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.arrowBtn {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--tag-bg); font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.arrowBtn:hover { background: #e8e8e8; }
+
+.monthLabel {
+  font-size: 16px; font-weight: 600;
+  min-width: 100px; text-align: center;
+}
+
+.rangeToggle, .editToggle {
+  padding: 6px 12px; border-radius: 16px;
+  font-size: 12px; background: var(--tag-bg); color: var(--text-secondary);
+  transition: all 0.15s;
+}
+.rangeActive, .editActive {
+  background: var(--primary); color: white;
+}
+
+.rangeRow {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+}
+.rangeRow input { flex: 1; padding: 8px 10px; font-size: 13px; }
+.rangeRow span { color: var(--text-secondary); font-size: 13px; }
+
+.catTags { display: flex; flex-wrap: wrap; gap: 6px; }
+.catTag {
+  padding: 5px 12px; border-radius: 16px;
+  font-size: 12px; font-weight: 500;
+  background: var(--tag-bg); color: var(--text-secondary);
+  border: 1px solid transparent;
+  transition: all 0.15s;
+}
+.catTag:hover { background: var(--hover-bg); }
+.catTagActive { background: var(--primary); color: white; border-color: var(--primary); }
+
+/* ===== Chart Grid ===== */
+.chartGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+:global(#root.desktop) .chartGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ===== Draggable Module ===== */
+.module {
+  position: relative;
+}
+
+.module > div:not(:first-child) {
+  /* inner content gets section styling */
+}
+
+.moduleEditing {
+  border: 2px dashed var(--primary-light);
+  border-radius: var(--radius);
+  margin-bottom: 6px;
+  background: var(--accent-bg);
+}
+
+.moduleBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgba(108, 92, 231, 0.06);
+  border-radius: var(--radius) var(--radius) 0 0;
+  cursor: default;
+}
+
+.dragHandle {
+  cursor: grab;
+  font-size: 18px;
+  color: var(--text-secondary);
+  letter-spacing: -2px;
+  user-select: none;
+  padding: 2px 4px;
+}
+.dragHandle:active { cursor: grabbing; }
+
+.moduleLabel {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.hideBtn {
+  width: 24px; height: 24px; border-radius: 50%;
+  font-size: 12px; background: transparent; color: var(--text-secondary);
+  display: flex; align-items: center; justify-content: center;
+}
+.hideBtn:hover { background: #ffeaea; color: var(--danger); }
+
+/* ===== Hidden restore bar ===== */
+.hiddenBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px;
+  margin-top: 8px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.hiddenLabel {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.restoreChip {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  background: var(--accent-bg);
+  color: var(--primary);
+  transition: all 0.12s;
+}
+.restoreChip:hover { background: #d5d0ff; }
+
+/* ===== Tooltips ===== */
+.tooltip {
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  box-shadow: var(--shadow);
+}
+
+/* ===== Summary Cards ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 12px 8px;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 4px; box-shadow: var(--shadow); text-align: center;
+}
+
+.cardIcon { font-size: 22px; }
+.cardLabel { font-size: 11px; color: var(--text-secondary); }
+.cardValue { font-size: 14px; font-weight: 700; }
+
+/* ===== Sections ===== */
+.sectionTitle {
+  font-size: 15px; font-weight: 600; margin-bottom: 10px;
+}
+
+.chartBox {
+  display: flex; flex-direction: column; align-items: center;
+}
+
+.legend {
+  width: 100%; display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px;
+}
+.legendItem {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 11px; padding: 4px 8px; background: var(--tag-bg);
+  border-radius: 16px; cursor: pointer;
+}
+.legendItem:hover { background: var(--hover-bg); }
+.legendDimmed { opacity: 0.35; }
+.legendDot { width: 7px; height: 7px; border-radius: 50%; }
+.legendPct { color: var(--text-secondary); margin-left: 2px; font-weight: 500; }
+
+.emptyChart {
+  text-align: center; padding: 30px; color: var(--text-secondary);
+}
+.emptyChart span { font-size: 36px; }
+
+/* ===== Budget ===== */
+.budgetList { display: flex; flex-direction: column; gap: 10px; }
+.budgetItem { }
+.budgetHeader { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 3px; }
+.overBudget { color: var(--danger); font-weight: 600; }
+.progressBar { height: 8px; background: var(--hover-bg); border-radius: 4px; overflow: hidden; }
+.progressFill { height: 100%; border-radius: 4px; transition: width 0.4s ease; }
+.progressOver { animation: pulse 1s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+.budgetPercent { font-size: 11px; color: var(--text-secondary); margin-top: 2px; text-align: right; }
+
+/* ===== Calendar Heatmap ===== */
+.heatmap { }
+.heatmapHeader {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  text-align: center; font-size: 11px; color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+.heatmapGrid {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 3px; margin-bottom: 8px;
+}
+.heatCell {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; border-radius: 4px; cursor: default;
+  color: var(--text); min-width: 0; overflow: hidden;
+}
+.heatLegend {
+  display: flex; align-items: center; gap: 4px; font-size: 11px;
+  color: var(--text-secondary); justify-content: flex-end;
+}
+.heatSwatch { width: 14px; height: 14px; border-radius: 3px; }
+
+/* Mobile: smaller heatmap cells */
+@media (max-width: 480px) {
+  .heatCell { font-size: 9px; }
+  .heatmapGrid { gap: 2px; }
+}
+
+/* Dark mode: ensure heatmap text contrast */
+:global(:root.dark) .heatCell { color: #e0e0e0; }
+
+/* ===== Top Expenses ===== */
+.topList { display: flex; flex-direction: column; gap: 6px; }
+.topItem {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 10px; background: var(--tag-bg); border-radius: 8px;
+  color: var(--text);
+}
+.topRank { font-size: 12px; font-weight: 700; color: var(--primary); min-width: 22px; }
+.topCat {
+  padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500;
+  white-space: nowrap;
+}
+.topDesc { flex: 1; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-secondary); }
+.topAmount { font-size: 14px; font-weight: 700; white-space: nowrap; }
+
+/* Mobile: smaller top list */
+@media (max-width: 480px) {
+  .topItem { padding: 6px 8px; gap: 6px; }
+  .topRank { font-size: 11px; min-width: 18px; }
+  .topCat { font-size: 10px; padding: 2px 6px; }
+  .topDesc { font-size: 12px; }
+  .topAmount { font-size: 13px; }
+}

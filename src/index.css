@@ -1,0 +1,110 @@
+:root {
+  --bg: #f5f6fa;
+  --card-bg: #ffffff;
+  --text: #2d3436;
+  --text-secondary: #636e72;
+  --border: #e0e0e0;
+  --primary: #6c5ce7;
+  --primary-light: #a29bfe;
+  --danger: #e17055;
+  --success: #00b894;
+  --warning: #fdcb6e;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --input-bg: #ffffff;
+  --tag-bg: #f5f6fa;
+  --hover-bg: #f0f0f0;
+  --table-stripe: #f8f9fa;
+  --accent-bg: #f0efff;
+  --accent-border: #d5d0ff;
+  --header-gradient-1: #6c5ce7;
+  --header-gradient-2: #a29bfe;
+}
+
+:root.dark {
+  --bg: #1a1a2e;
+  --card-bg: #16213e;
+  --text: #e0e0e0;
+  --text-secondary: #a0a0b0;
+  --border: #2a2a4a;
+  --primary: #7c6ff7;
+  --primary-light: #a294ff;
+  --danger: #ff7675;
+  --success: #55efc4;
+  --warning: #ffeaa7;
+  --shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  --input-bg: #1a1a3a;
+  --tag-bg: #2a2a4a;
+  --hover-bg: #2f2f50;
+  --table-stripe: #1e2a45;
+  --accent-bg: #2a2550;
+  --accent-border: #4a4080;
+  --header-gradient-1: #4a3db8;
+  --header-gradient-2: #6c5ce7;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  position: relative;
+  background: var(--bg);
+}
+
+#root.desktop {
+  max-width: none;
+  margin: 0;
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+input, select, textarea {
+  outline: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 15px;
+  width: 100%;
+  transition: border-color 0.2s;
+  background: var(--input-bg);
+  color: var(--text);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--primary);
+}
+
+/* Date inputs: keep light calendar picker in dark mode */
+:root.dark input[type="date"] {
+  color-scheme: light;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-thumb { background: #666; border-radius: 4px; }
+:root.dark ::-webkit-scrollbar-thumb { background: #444; }

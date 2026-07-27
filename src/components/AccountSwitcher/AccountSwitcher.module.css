@@ -1,0 +1,231 @@
+.container {
+  position: relative;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255,255,255,0.15);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.trigger:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.triggerIcon {
+  font-size: 16px;
+}
+
+.triggerName {
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.arrow {
+  font-size: 12px;
+  transition: transform 0.2s;
+}
+
+.arrowUp {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  min-width: 220px;
+  z-index: 60;
+  padding: 6px;
+  animation: dropIn 0.15s ease;
+}
+
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+  color: var(--text);
+}
+
+.item:hover {
+  background: var(--tag-bg);
+}
+
+.active {
+  background: var(--accent-bg);
+  font-weight: 600;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.name {
+  flex: 1;
+  font-size: 14px;
+}
+
+.syncBadge {
+  font-size: 14px;
+}
+
+.deleteBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-size: 12px;
+  background: transparent;
+  opacity: 0.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+  background: #ffeaea;
+}
+
+.divider {
+  height: 1px;
+  background: var(--hover-bg);
+  margin: 4px 0;
+}
+
+.addBtn {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--primary);
+  background: transparent;
+  border-radius: 8px;
+}
+
+.addBtn:hover {
+  background: var(--accent-bg);
+}
+
+.createForm {
+  padding: 6px;
+}
+
+.createForm input {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.iconRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.iconOpt {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--tag-bg);
+  border: 2px solid transparent;
+}
+
+.iconSelected {
+  border-color: var(--primary);
+  background: var(--accent-bg);
+}
+
+.createActions {
+  display: flex;
+  gap: 6px;
+}
+
+.cancelBtn, .confirmBtn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cancelBtn {
+  background: var(--tag-bg);
+  color: var(--text-secondary);
+}
+
+.confirmBtn {
+  background: var(--primary);
+  color: white;
+}
+
+.dangerBtn {
+  background: var(--danger);
+  color: white;
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Modal */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+}
+
+.modalBox {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 20px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  max-width: 320px;
+}
+
+.modalBox p {
+  font-size: 15px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.modalActions {
+  display: flex;
+  gap: 10px;
+}
