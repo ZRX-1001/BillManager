@@ -7,6 +7,7 @@ import {
   loadActiveAccountId, saveActiveAccountId,
   removeAccountData,
   syncAccountToFolder, exportToJSON, importFromJSON,
+  restoreFolderHandle,
 } from '../utils/storage'
 import { DEFAULT_CATEGORIES, DEFAULT_SETTINGS, DEFAULT_ACCOUNT } from '../data/defaults'
 
@@ -231,6 +232,11 @@ export function AppProvider({ children }) {
         layoutMode: localStorage.getItem('expense-tracker-layout') || 'mobile',
         theme: localStorage.getItem('expense-tracker-theme') || 'light',
       },
+    })
+
+    // Restore folder sync handle from IndexedDB (survives page reload)
+    restoreFolderHandle().then(ok => {
+      if (ok) dispatch({ type: 'SET_FOLDER_BOUND', payload: true })
     })
   }, [])
 

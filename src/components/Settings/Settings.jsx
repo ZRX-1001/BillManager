@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { useApp } from '../../context/AppContext'
 import { generateId } from '../../utils/helpers'
 import { ACCOUNT_ICONS } from '../../data/defaults'
-import { isFileSystemAPISupported, pickFolder, loadAccountFromFolder, syncAccountToFolder } from '../../utils/storage'
+import { isFileSystemAPISupported, pickFolder, loadAccountFromFolder, syncAccountToFolder, clearFolderHandle } from '../../utils/storage'
 import styles from './Settings.module.css'
 
 const NAV_ITEMS = [
@@ -171,6 +171,7 @@ export default function Settings() {
           <button className={styles.dangerOutline} onClick={() => {
             dispatch({ type: 'UPDATE_ACCOUNT', payload: { id: state.activeAccountId, syncEnabled: false, syncDirName: '' } })
             dispatch({ type: 'SET_FOLDER_BOUND', payload: false })
+            clearFolderHandle()
             showMsg('success', '已取消绑定')
           }}>取消绑定</button>
         ) : (
