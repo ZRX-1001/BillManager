@@ -1,0 +1,7 @@
+node_modules/
+dist/
+origin/
+datamanager/
+记账数据_导入.json
+屏幕截图*.png
+.DS_Store
