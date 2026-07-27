@@ -1,0 +1,95 @@
+.header {
+  background: linear-gradient(135deg, var(--header-gradient-1), var(--header-gradient-2));
+  color: #fff;
+  padding: 10px 16px 14px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 20px rgba(108, 92, 231, 0.3);
+}
+
+.headerDesktop {
+  border-radius: 0;
+  padding: 10px 24px 14px;
+}
+
+.topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand {
+  font-size: 18px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Desktop navigation tabs */
+.desktopNav {
+  display: flex;
+  gap: 4px;
+}
+
+.navTab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.75);
+  background: transparent;
+  transition: all 0.15s;
+}
+
+.navTab:hover {
+  background: rgba(255,255,255,0.12);
+  color: white;
+}
+
+.navTabActive {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex; gap: 4px; flex-shrink: 0;
+}
+
+.layoutBtn {
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  font-size: 16px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+
+.layoutBtn:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0 4px;
+}
+
+.label {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.total {
+  font-size: 28px;
+  font-weight: 700;
+}
