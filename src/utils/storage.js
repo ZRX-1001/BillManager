@@ -85,29 +85,83 @@ export function isFileSystemAPISupported() {
   return typeof window !== 'undefined' && 'showDirectoryPicker' in window
 }
 
+// ---- IndexedDB for persisting folder handle across page reloads ----
+const IDB_NAME = 'expense-tracker-fs'
+const IDB_STORE = 'handles'
+const HANDLE_KEY = 'folderHandle'
+
+function openFSDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(IDB_NAME, 1)
+    req.onupgradeneeded = () => { req.result.createObjectStore(IDB_STORE) }
+    req.onsuccess = () => resolve(req.result)
+    req.onerror = () => reject(req.error)
+  })
+}
+
+async function saveFolderHandleToDB(handle) {
+  try {
+    const db = await openFSDB()
+    const tx = db.transaction(IDB_STORE, 'readwrite')
+    tx.objectStore(IDB_STORE).put(handle, HANDLE_KEY)
+    await new Promise((r) => { tx.oncomplete = r })
+  } catch { /* IndexedDB may be unavailable */ }
+}
+
+async function loadFolderHandleFromDB() {
+  try {
+    const db = await openFSDB()
+    const handle = await new Promise((resolve) => {
+      const req = db.transaction(IDB_STORE).objectStore(IDB_STORE).get(HANDLE_KEY)
+      req.onsuccess = () => resolve(req.result)
+      req.onerror = () => resolve(null)
+    })
+    return handle || null
+  } catch { return null }
+}
+
+// Clear stored folder handle (called on unbind)
+export async function clearFolderHandle() {
+  folderHandle = null
+  await saveFolderHandleToDB(null)
+}
+
 export async function pickFolder() {
   if (!isFileSystemAPISupported()) {
     throw new Error('当前浏览器不支持本地文件夹功能，请使用 Chrome 或 Edge')
   }
   const handle = await window.showDirectoryPicker({ mode: 'readwrite' })
   folderHandle = handle
+  await saveFolderHandleToDB(handle)
   return handle
 }
 
-// Persist folder handle permission in IndexedDB (handles are not JSON-serializable)
-// We use a simpler approach: request permission on each page load
+// Restore folder handle from IndexedDB on page load
+export async function restoreFolderHandle() {
+  if (!isFileSystemAPISupported()) return false
+  const handle = await loadFolderHandleFromDB()
+  if (!handle) return false
+  return verifyFolderPermission(handle)
+}
+
+// Re-request permission for an existing handle
 export async function verifyFolderPermission(handle) {
   if (!handle) return false
   const opts = { mode: 'readwrite' }
-  const permission = await handle.queryPermission(opts)
-  if (permission === 'granted') {
-    folderHandle = handle
-    return true
-  }
-  const result = await handle.requestPermission(opts)
-  if (result === 'granted') {
-    folderHandle = handle
-    return true
+  try {
+    const permission = await handle.queryPermission(opts)
+    if (permission === 'granted') {
+      folderHandle = handle
+      return true
+    }
+    const result = await handle.requestPermission(opts)
+    if (result === 'granted') {
+      folderHandle = handle
+      return true
+    }
+  } catch {
+    // Handle may be stale — remove from DB
+    await saveFolderHandleToDB(null)
   }
   return false
 }
